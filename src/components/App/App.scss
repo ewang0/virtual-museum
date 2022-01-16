@@ -1,0 +1,18 @@
+html, body {
+  font-family: 'Roboto Condensed', sans-serif;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  border: 2px solid red;
+  //background-color: black;
+}
+
+main {
+  border: 2px solid green;
+  //color: white;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+}

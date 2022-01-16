@@ -1,0 +1,12 @@
+.image-grid-header-container {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+
+.image-grid-header-sort {
+    display: flex;
+    form {
+        display: flex;
+    }
+}
