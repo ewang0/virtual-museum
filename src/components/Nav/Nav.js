@@ -3,7 +3,7 @@ import './Nav.scss'
 import { NavLink } from 'react-router-dom'
 import Search from '../Search/Search.js'
 
-const Nav = () => {
+const Nav = ({ handleSubmit }) => {
     return (
         <nav>
             <div>
@@ -14,7 +14,7 @@ const Nav = () => {
                     <NavLink to="/saved">Saved</NavLink>
                 </div>
             </div>
-            <Search />
+            <Search handleSubmit={handleSubmit} />
             <p>Search the collection of the Metropolitan Museum of Art and get inspired without leaving home.</p>
         </nav>
     )
