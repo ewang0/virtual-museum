@@ -1,4 +1,35 @@
 nav {
     max-width: 350px;
-    border: 2px solid blue;
+    //border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.nav-content {
+    margin: 20px 40px 20px 40px;
+    max-width: 270px;
+    p {
+        max-width: 85% ;
+    }
+}
+.logo-nav-container{
+    margin-bottom: 40px;
+    
+    .logo {
+        font-family: 'Anton', sans-serif;
+        font-size: 60px;
+        margin: 0px;
+    }
+    .nav-links {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+        display: flex;
+        justify-content: space-between;
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    }
 }
