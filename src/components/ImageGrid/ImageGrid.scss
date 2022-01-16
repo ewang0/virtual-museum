@@ -1,0 +1,25 @@
+.image-grid-section-container {
+    height: 100vh;
+    overflow: scroll;
+    margin-right: 200px;
+    border: 2px solid orange;
+}
+
+.placeholder-img {
+    width: 100%;
+    height:300px;
+    background-color: lightgray;
+    border: 1px solid gray;
+    margin: 15px;
+}
+
+img {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.images {
+    max-width: 1000px;
+    column-count: 2;
+}
