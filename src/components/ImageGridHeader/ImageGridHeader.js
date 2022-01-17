@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import './ImageGridHeader.scss'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
 import { departments } from '../../content.js'
 
-const ImageGridHeader = ({ handleSort, handleOnView }) => {
-    //const autocomplete = document.querySelector('.MuiAutocomplete-listbox')
-    const [departmentValue, setDepartmentValue] = useState('');
+const ImageGridHeader = ({ handleSort }) => {
+    const [departmentValue, setDepartmentValue] = useState(null);
 
     return(
         <div className="image-grid-header-container">
@@ -15,7 +13,7 @@ const ImageGridHeader = ({ handleSort, handleOnView }) => {
             <div className="image-grid-header-sort">
                 <form className="department-sort-container">
                     <label>
-                        Sort by
+                        Sort by:
                         <Autocomplete
                             value={departmentValue}
                             className="autocomplete"
@@ -34,17 +32,6 @@ const ImageGridHeader = ({ handleSort, handleOnView }) => {
                                 <TextField {...params} label="Department" size="small" />
                             )}
                         />
-                    </label>
-                </form>
-                <form className="on-view-sort-container">
-                    <label>
-                        <Checkbox 
-                            onChange={(event) => {
-                                //console.log(event.target.checked)
-                                handleOnView(event.target.checked)
-                            }}
-                        />
-                        On view
                     </label>
                 </form>
             </div>

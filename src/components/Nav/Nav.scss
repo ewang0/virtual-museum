@@ -10,10 +10,11 @@ nav {
     max-width: 270px;
     p {
         max-width: 85% ;
+        font-size: 14px;
     }
 }
 .logo-nav-container{
-    margin-bottom: 40px;
+    // margin-bottom: 40px;
     
     .logo {
         font-family: 'Anton', sans-serif;
@@ -32,4 +33,8 @@ nav {
             color: black;
         }
     }
+}
+
+.search-filter-container {
+    display: flex;
 }

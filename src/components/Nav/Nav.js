@@ -2,8 +2,9 @@ import React from 'react';
 import './Nav.scss'
 import { NavLink } from 'react-router-dom'
 import Search from '../Search/Search.js'
+import Checkbox from '@mui/material/Checkbox';
 
-const Nav = ({ handleSubmit }) => {
+const Nav = ({ handleSubmit, handleOnView }) => {
     return (
         <nav>
             <div className="nav-content">
@@ -15,8 +16,30 @@ const Nav = ({ handleSubmit }) => {
                         <NavLink to="/saved">Saved</NavLink>
                     </div>
                 </div>
-                <Search handleSubmit={handleSubmit} />
                 <p>Search the collection of the Metropolitan Museum of Art and get inspired without leaving home.</p>
+                <Search handleSubmit={handleSubmit} />
+                <form className="search-filter-container">
+                    <p>Filters:</p>
+                    <label>
+                        <Checkbox 
+                            onChange={(event) => {
+                                //console.log(event.target.checked)
+                                handleOnView(event.target.checked)
+                            }}
+                        />
+                        On view
+                    </label>
+                    <label>
+                        <Checkbox 
+                            onChange={(event) => {
+                                //console.log(event.target.checked)
+                                handleOnView(event.target.checked)
+                            }}
+                        />
+                        Highlighted
+                    </label>
+                </form>
+                
             </div>
         </nav>
     )
