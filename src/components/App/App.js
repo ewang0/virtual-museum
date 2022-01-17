@@ -16,7 +16,7 @@ function App() {
         //console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${'&' + departmentEndpoint}&${searchEndpoint}`)
         const resJson = await res.json()
         .catch(error => console.log(error));
-        setObjectIDs(resJson.objectIDs.splice(0, 50))
+        setObjectIDs(resJson.objectIDs.splice(0, 10))
         //console.log(resJson.objectIDs) 
     }
     fetchData();
@@ -43,26 +43,27 @@ function App() {
     
   const handleSubmit = (event, searchQuery) => {
     event.preventDefault();
+    setDisplayedArtObjects([]);
     setSearchEndpoint(`q=${searchQuery}`);
   }
 
   const handleSort = (event, inputValue) => {
     event.preventDefault();
-    if(inputValue === null) {
+    if(!inputValue) {
       setDisplayedArtObjects(artObjects);
     } else {
-      console.log('inputvalue', inputValue.label)
+      //console.log('inputvalue', inputValue.label)
       const filteredObjects = artObjects.filter((artObject) => {
         return artObject.department === inputValue.label;
       })
-      console.log('filtered objs', filteredObjects)
+      //console.log('filtered objs', filteredObjects)
       setDisplayedArtObjects(filteredObjects);
     }
     }
 
     
   const imageURLs = displayedArtObjects.reduce((acc, obj) => {
-      acc.push(obj.primaryImage)
+      acc.push(obj.primaryImageSmall)
       return acc;
     }, [])
   
