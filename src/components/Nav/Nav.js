@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import Search from '../Search/Search.js'
 import Checkbox from '@mui/material/Checkbox';
 
-const Nav = ({ handleSubmit, handleOnView }) => {
+const Nav = ({ handleSubmit, handleChecked }) => {
     return (
         <nav>
             <div className="nav-content">
@@ -22,18 +22,20 @@ const Nav = ({ handleSubmit, handleOnView }) => {
                     <p>Filters:</p>
                     <label>
                         <Checkbox 
+                            id="onView"
                             onChange={(event) => {
-                                //console.log(event.target.checked)
-                                handleOnView(event.target.checked)
+                                console.log(event.target.id)
+                                handleChecked(event.target.checked, event.target.id)
                             }}
                         />
                         On view
                     </label>
                     <label>
                         <Checkbox 
+                            id="isHighlight"
                             onChange={(event) => {
-                                //console.log(event.target.checked)
-                                handleOnView(event.target.checked)
+                                console.log(event.target.id)
+                                handleChecked(event.target.checked, event.target.id)
                             }}
                         />
                         Highlighted

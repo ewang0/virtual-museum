@@ -9,12 +9,13 @@ function App() {
   const [displayedArtObjects, setDisplayedArtObjects] = useState([]);
   const [searchEndpoint, setSearchEndpoint] = useState('q=sunflower');
   const [isOnView, setIsOnView] = useState(false)
+  const [isHighlight, setIsHighlight] = useState(false)
   //const [departmentEndpoint, setDepartmentEndpoint] = useState('');
   
   useEffect(() => {
     const fetchData = async() => {
-        const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
-        console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
+        const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
+        console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
         const resJson = await res.json()
         .catch(error => console.log(error));
         setObjectIDs(resJson.objectIDs.splice(0,20))
@@ -62,11 +63,17 @@ function App() {
     }
   }
 
-  const handleOnView = (isChecked) => {
-    if(isChecked) {
+  const handleChecked = (isChecked, id) => {
+    if(isChecked && id==='onView') {
       setIsOnView(true)
-    } else {
+    } else if (!isChecked && id==='onView') {
       setIsOnView(false)
+    }
+
+    if(isChecked && id==='isHighlight') {
+      setIsHighlight(true)
+    } else if (!isChecked && id==='isHighlight'){
+      setIsHighlight(false)
     }
   }
 
@@ -78,7 +85,7 @@ function App() {
   
   return (
     <main className="main-container">
-      <Nav handleSubmit={handleSubmit} handleOnView={handleOnView}/>
+      <Nav handleSubmit={handleSubmit} handleChecked={handleChecked}/>
       <ImageGrid imageURLs={imageURLs} handleSort={handleSort} />
     </main>
   );
