@@ -8,15 +8,16 @@ function App() {
   const [artObjects, setArtObjects] = useState([]);
   const [displayedArtObjects, setDisplayedArtObjects] = useState([]);
   const [searchEndpoint, setSearchEndpoint] = useState('q=sunflower');
+  const [isOnView, setIsOnView] = useState(false)
   //const [departmentEndpoint, setDepartmentEndpoint] = useState('');
   
   useEffect(() => {
     const fetchData = async() => {
-        const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&${searchEndpoint}`)
-        //console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${'&' + departmentEndpoint}&${searchEndpoint}`)
+        const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
+        //console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
         const resJson = await res.json()
         .catch(error => console.log(error));
-        setObjectIDs(resJson.objectIDs.splice(0, 10))
+        setObjectIDs(resJson.objectIDs.splice(0,20))
         //console.log(resJson.objectIDs) 
     }
     fetchData();
@@ -39,7 +40,7 @@ function App() {
             }
             fetchData();
     }
-    }, [objectIDs]);
+    }, [objectIDs, isOnView]);
     
   const handleSubmit = (event, searchQuery) => {
     event.preventDefault();
@@ -59,7 +60,15 @@ function App() {
       //console.log('filtered objs', filteredObjects)
       setDisplayedArtObjects(filteredObjects);
     }
+  }
+
+  const handleOnView = (isChecked) => {
+    if(isChecked) {
+      setIsOnView(true)
+    } else {
+      setIsOnView(false)
     }
+  }
 
     
   const imageURLs = displayedArtObjects.reduce((acc, obj) => {
@@ -70,7 +79,7 @@ function App() {
   return (
     <main className="main-container">
       <Nav handleSubmit={handleSubmit}/>
-      <ImageGrid imageURLs={imageURLs} handleSort={handleSort}/>
+      <ImageGrid imageURLs={imageURLs} handleSort={handleSort} handleOnView={handleOnView}/>
     </main>
   );
 }

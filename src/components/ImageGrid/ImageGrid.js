@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ImageGrid.scss'
 import ImageGridHeader from '../ImageGridHeader/ImageGridHeader'
 
-const ImageGrid = ({ imageURLs, handleSort }) => {
+const ImageGrid = ({ imageURLs, handleSort, handleOnView }) => {
     // const [imageURLs, setImageURLs] = useState([]);
 
     // useEffect(() => {
@@ -31,7 +31,7 @@ const ImageGrid = ({ imageURLs, handleSort }) => {
 
     return(
         <section className="image-grid-section-container">
-            <ImageGridHeader handleSort={handleSort}/>
+            <ImageGridHeader handleSort={handleSort} handleOnView={handleOnView}/>
             <div className="images">
                 {images}
             </div>

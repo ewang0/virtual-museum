@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import { departments } from '../../content.js'
 
-const ImageGridHeader = ({ handleSort }) => {
+const ImageGridHeader = ({ handleSort, handleOnView }) => {
     //const autocomplete = document.querySelector('.MuiAutocomplete-listbox')
     const [departmentValue, setDepartmentValue] = useState('');
 
@@ -38,7 +38,12 @@ const ImageGridHeader = ({ handleSort }) => {
                 </form>
                 <form className="on-view-sort-container">
                     <label>
-                        <Checkbox />
+                        <Checkbox 
+                            onChange={(event) => {
+                                //console.log(event.target.checked)
+                                handleOnView(event.target.checked)
+                            }}
+                        />
                         On view
                     </label>
                 </form>
