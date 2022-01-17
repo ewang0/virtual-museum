@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const fetchData = async() => {
         const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
-        //console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
+        console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
         const resJson = await res.json()
         .catch(error => console.log(error));
         setObjectIDs(resJson.objectIDs.splice(0,20))
@@ -40,7 +40,7 @@ function App() {
             }
             fetchData();
     }
-    }, [objectIDs, isOnView]);
+    }, [objectIDs]);
     
   const handleSubmit = (event, searchQuery) => {
     event.preventDefault();
@@ -78,8 +78,8 @@ function App() {
   
   return (
     <main className="main-container">
-      <Nav handleSubmit={handleSubmit}/>
-      <ImageGrid imageURLs={imageURLs} handleSort={handleSort} handleOnView={handleOnView}/>
+      <Nav handleSubmit={handleSubmit} handleOnView={handleOnView}/>
+      <ImageGrid imageURLs={imageURLs} handleSort={handleSort} />
     </main>
   );
 }
