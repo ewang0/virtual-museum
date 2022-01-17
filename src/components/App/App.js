@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import Nav from '../Nav/Nav.js'
 import ImageGrid from '../ImageGrid/ImageGrid.js'
+import About from '../About/About.js'
+import Details from '../Details/Details.js'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   const [objectIDs, setObjectIDs] = useState([]);
@@ -86,7 +89,13 @@ function App() {
   return (
     <main className="main-container">
       <Nav handleSubmit={handleSubmit} handleChecked={handleChecked}/>
-      <ImageGrid imageURLs={imageURLs} handleSort={handleSort} />
+      <Routes>
+        <Route path="/" element={<ImageGrid imageURLs={imageURLs} handleSort={handleSort} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="details" element={<Details />}>
+          <Route path="/details/:id" element={<Details />}/>
+        </Route>
+      </Routes>
     </main>
   );
 }
