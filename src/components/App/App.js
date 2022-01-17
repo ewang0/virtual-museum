@@ -80,20 +80,15 @@ function App() {
     }
   }
 
-    
-  const imageURLs = displayedArtObjects.reduce((acc, obj) => {
-      acc.push(obj.primaryImageSmall)
-      return acc;
-    }, [])
-  
   return (
     <main className="main-container">
       <Nav handleSubmit={handleSubmit} handleChecked={handleChecked}/>
       <Routes>
-        <Route path="/" element={<ImageGrid imageURLs={imageURLs} handleSort={handleSort} />} />
+        <Route path="/" element={<Details />} /> 
+        {/* <Route path="/" element={<ImageGrid displayedArtObjects={displayedArtObjects} handleSort={handleSort} />} /> */}
         <Route path="/about" element={<About />} />
-        <Route path="details" element={<Details />}>
-          <Route path="/details/:id" element={<Details />}/>
+        <Route path="/details" element={<Details />}>
+          <Route path="/details/:objectID" element={<Details />}/>
         </Route>
       </Routes>
     </main>

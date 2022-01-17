@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ImageGrid.scss'
 import ImageGridHeader from '../ImageGridHeader/ImageGridHeader'
+import { Link } from 'react-router-dom'
 
-const ImageGrid = ({ imageURLs, handleSort }) => {
+const ImageGrid = ({ displayedArtObjects, handleSort }) => {
     // const [imageURLs, setImageURLs] = useState([]);
 
     // useEffect(() => {
@@ -23,9 +24,11 @@ const ImageGrid = ({ imageURLs, handleSort }) => {
     //     }
     //     }, []);
 
-    const images = imageURLs.map((url) => {
+    const images = displayedArtObjects.map((artObject) => {
         return(
-            <img className="" src={url} />
+            <Link to={`/details/${artObject.objectID}`}>
+                <img className="" key={artObject.objectID} src={artObject.primaryImageSmall} alt={artObject.title} />
+            </Link>
         )
     })
 
