@@ -1,7 +1,23 @@
 .image-grid-header-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: inherit;
+    margin-top: 20px;
+}
+.image-grid-header-sort {
+    form {
+        margin-left: 20px;
+    }
+}
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+.autocomplete {
+    margin-left: 15px;
 }
 
 .image-grid-header-sort {

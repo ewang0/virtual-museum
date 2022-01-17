@@ -5,36 +5,38 @@ import ImageGrid from '../ImageGrid/ImageGrid.js'
 
 function App() {
   const [objectIDs, setObjectIDs] = useState([]);
-  const [imageURLs, setImageURLs] = useState([]);
-  const [endpoint, setEndpoint] = useState('sunflower');
-
+  const [artObjects, setArtObjects] = useState([]);
+  const [displayedArtObjects, setDisplayedArtObjects] = useState([]);
+  const [searchEndpoint, setSearchEndpoint] = useState('q=sunflower');
+  const [isOnView, setIsOnView] = useState(false)
+  const [isHighlight, setIsHighlight] = useState(false)
+  //const [departmentEndpoint, setDepartmentEndpoint] = useState('');
+  
   useEffect(() => {
     const fetchData = async() => {
-        const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=${endpoint}`)
+        const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
+        console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
         const resJson = await res.json()
         .catch(error => console.log(error));
-        setObjectIDs(resJson.objectIDs.splice(0, 10))
-        console.log(resJson.objectIDs) 
+        setObjectIDs(resJson.objectIDs.splice(0,20))
+        //console.log(resJson.objectIDs) 
     }
     fetchData();
-    }, [endpoint]);
-
-    // useEffect(() => {
-    //   console.log(endpoint);
-    // }, [endpoint])
+    }, [searchEndpoint]);
 
   useEffect(() => {
-    let idArray = [];
+    let objArray = [];
     for(let i=0; i<objectIDs.length; i++) {
         const fetchData = async() => {
                 const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectIDs[i]}`)
                 const resJson = await res.json()
                 .catch(error => console.log(error));
-                idArray.push(resJson.primaryImage)
+                objArray.push(resJson)
                 
                 if(i === objectIDs.length-1) {
-                    setImageURLs(idArray)
-                    console.log(idArray)
+                    setArtObjects(objArray)
+                    setDisplayedArtObjects(objArray)
+                    console.log(objArray)
                 }
             }
             fetchData();
@@ -43,13 +45,48 @@ function App() {
     
   const handleSubmit = (event, searchQuery) => {
     event.preventDefault();
-    setEndpoint(searchQuery);
+    setDisplayedArtObjects([]);
+    setSearchEndpoint(`q=${searchQuery}`);
   }
+
+  const handleSort = (event, inputValue) => {
+    event.preventDefault();
+    if(!inputValue) {
+      setDisplayedArtObjects(artObjects);
+    } else {
+      //console.log('inputvalue', inputValue.label)
+      const filteredObjects = artObjects.filter((artObject) => {
+        return artObject.department === inputValue.label;
+      })
+      //console.log('filtered objs', filteredObjects)
+      setDisplayedArtObjects(filteredObjects);
+    }
+  }
+
+  const handleChecked = (isChecked, id) => {
+    if(isChecked && id==='onView') {
+      setIsOnView(true)
+    } else if (!isChecked && id==='onView') {
+      setIsOnView(false)
+    }
+
+    if(isChecked && id==='isHighlight') {
+      setIsHighlight(true)
+    } else if (!isChecked && id==='isHighlight'){
+      setIsHighlight(false)
+    }
+  }
+
     
+  const imageURLs = displayedArtObjects.reduce((acc, obj) => {
+      acc.push(obj.primaryImageSmall)
+      return acc;
+    }, [])
+  
   return (
     <main className="main-container">
-      <Nav handleSubmit={handleSubmit}/>
-      <ImageGrid imageURLs={imageURLs}/>
+      <Nav handleSubmit={handleSubmit} handleChecked={handleChecked}/>
+      <ImageGrid imageURLs={imageURLs} handleSort={handleSort} />
     </main>
   );
 }
