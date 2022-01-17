@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import './Nav.scss'
 import { NavLink } from 'react-router-dom'
-import Search from '../Search/Search.js'
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import { ResetTv } from '@mui/icons-material';
+import PropTypes from 'prop-types';
 
 const Nav = ({ handleSubmit, handleChecked }) => {
     const [searchState, setSearchState] = useState('');
@@ -78,10 +77,14 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                         Highlighted
                     </label>
                 </form>
-                
             </div>
         </nav>
     )
 }
 
 export default Nav;
+
+Nav.propTypes = {
+    handleSubmit: PropTypes.func,
+    handleSubmit: PropTypes.func
+}
