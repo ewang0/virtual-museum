@@ -38,3 +38,21 @@ nav {
 .search-filter-container {
     display: flex;
 }
+
+//search styles
+.search-bar {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.submit-search-button {
+    &:hover {
+        opacity: 80%;
+        cursor: pointer;
+        color: white;
+        background-color: rgb(141, 141, 141);
+        border-radius: 40px;
+        margin-right: -3px;
+        padding: 3px;
+    }
+}
