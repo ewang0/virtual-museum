@@ -84,8 +84,8 @@ function App() {
     <main className="main-container">
       <Nav handleSubmit={handleSubmit} handleChecked={handleChecked}/>
       <Routes>
-        <Route path="/" element={<Details />} /> 
-        {/* <Route path="/" element={<ImageGrid displayedArtObjects={displayedArtObjects} handleSort={handleSort} />} /> */}
+        {/* <Route path="/" element={<Details />} />  */}
+        <Route path="/" element={<ImageGrid displayedArtObjects={displayedArtObjects} handleSort={handleSort} />} />
         <Route path="/about" element={<About />} />
         <Route path="/details" element={<Details />}>
           <Route path="/details/:objectID" element={<Details />}/>
