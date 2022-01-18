@@ -35,7 +35,7 @@ const ImageGrid = ({ displayedArtObjects, handleSort, handleHover, clearAsideInf
     return(
         <section className="image-grid-section-container">
             <ImageGridHeader handleSort={handleSort} />
-            { displayedArtObjects.length===0 ? <ErrorState type={"sort"}/> : <div className="images">{images}</div>}
+            { displayedArtObjects.length===0 ? <ErrorState type={"sort" }/> : <div className="images">{images}</div>}
         </section>
     )
 }
