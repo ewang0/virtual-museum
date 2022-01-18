@@ -1,7 +1,8 @@
 import React from 'react';
 import './ErrorState.scss';
+import PropTypes from 'prop-types';
 
-const ErrorState = ({ error, type }) => {
+const ErrorState = ({ type }) => {
     return(
         <section className={`error-state-container ${type}`}>
             <div className={`error-state-content ${type}`}>
@@ -12,4 +13,9 @@ const ErrorState = ({ error, type }) => {
     )
 }
 
+
 export default ErrorState;
+
+ErrorState.propTypes = {
+    type: PropTypes.string
+}
