@@ -1,8 +1,8 @@
 .image-grid-section-container {
     height: 100vh;
     overflow: scroll;
-    margin-right: 200px;
-    //border: 2px solid orange;
+    //margin-right: 200px;
+    border: 2px solid orange;
 }
 
 .placeholder-img {
@@ -17,6 +17,9 @@ img {
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+    &:hover {
+        opacity: 80%;
+    }
 }
 
 .images {

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './ImageGridHeader.scss'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { departments } from '../../content.js'
+import { departments } from '../../content.js';
+import PropTypes from 'prop-types';
 
 const ImageGridHeader = ({ handleSort }) => {
     const [departmentValue, setDepartmentValue] = useState(null);
@@ -40,3 +41,7 @@ const ImageGridHeader = ({ handleSort }) => {
 }
 
 export default ImageGridHeader;
+
+ImageGridHeader.propTypes = {
+    handleSort: PropTypes.func
+}
