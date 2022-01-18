@@ -32,6 +32,7 @@ function App() {
           setError("No results")
           setTimeout(() => setIsLoading(false), 2500)
         } else {
+          setError('')
           setObjectIDs(resJson.objectIDs.splice(0,20))
         }
 
@@ -123,7 +124,7 @@ function App() {
         {/* <Route path="/" element={<Details />} />  */}
         <Route path="/" element={ 
           isLoading ? <LoadingScreen handleSort={handleSort} /> :
-            error ? <p>{error}</p> : 
+            error ? <ErrorState /> : 
               <div className="image-grid-aside-wrapper">
                 <ImageGrid 
                 displayedArtObjects={displayedArtObjects} 
