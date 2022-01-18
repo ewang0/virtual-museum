@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ImageGrid.scss';
 import ImageGridHeader from '../ImageGridHeader/ImageGridHeader';
 import AsideInfo from '../AsideInfo/AsideInfo';
+import ErrorState from '../ErrorState/ErrorState';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -34,9 +35,7 @@ const ImageGrid = ({ displayedArtObjects, handleSort, handleHover, clearAsideInf
     return(
         <section className="image-grid-section-container">
             <ImageGridHeader handleSort={handleSort} />
-            <div className="images">
-                {images}
-            </div>
+            { displayedArtObjects.length===0 ? <ErrorState type={"sort"}/> : <div className="images">{images}</div>}
         </section>
     )
 }
