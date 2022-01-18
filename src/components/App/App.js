@@ -4,6 +4,7 @@ import Nav from '../Nav/Nav.js'
 import ImageGrid from '../ImageGrid/ImageGrid.js'
 import About from '../About/About.js'
 import Details from '../Details/Details.js'
+import AsideInfo from '../AsideInfo/AsideInfo';
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -13,12 +14,13 @@ function App() {
   const [searchEndpoint, setSearchEndpoint] = useState('q=sunflower');
   const [isOnView, setIsOnView] = useState(false)
   const [isHighlight, setIsHighlight] = useState(false)
+  const [asideInfo, setAsideInfo] = useState({})
   //const [departmentEndpoint, setDepartmentEndpoint] = useState('');
   
   useEffect(() => {
     const fetchData = async() => {
         const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
-        console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
+        //console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
         const resJson = await res.json()
         .catch(error => console.log(error));
         setObjectIDs(resJson.objectIDs.splice(0,20))
@@ -80,12 +82,29 @@ function App() {
     }
   }
 
+  const handleHover = (event, objectKey) => {
+    const hoveredObject = displayedArtObjects.find((object) => { 
+      return objectKey===object.objectID.toString()
+    });
+    setAsideInfo({title: hoveredObject.title, artist: hoveredObject.artistDisplayName, date: hoveredObject.objectDate});
+    console.log(asideInfo)
+  }
+
+  const clearAsideInfo = () => {
+    setAsideInfo({});
+  }
+  
   return (
     <main className="main-container">
       <Nav handleSubmit={handleSubmit} handleChecked={handleChecked}/>
       <Routes>
         {/* <Route path="/" element={<Details />} />  */}
-        <Route path="/" element={<ImageGrid displayedArtObjects={displayedArtObjects} handleSort={handleSort} />} />
+        <Route path="/" element={
+          <div className="image-grid-aside-wrapper">
+            <ImageGrid displayedArtObjects={displayedArtObjects} handleSort={handleSort} handleHover={handleHover} clearAsideInfo={clearAsideInfo} />
+            <AsideInfo asideInfo={asideInfo} />
+          </div>
+          } />
         <Route path="/about" element={<About />} />
         <Route path="/details" element={<Details />}>
           <Route path="/details/:objectID" element={<Details />}/>
