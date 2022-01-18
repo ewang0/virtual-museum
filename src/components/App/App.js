@@ -5,6 +5,7 @@ import ImageGrid from '../ImageGrid/ImageGrid.js'
 import About from '../About/About.js'
 import Details from '../Details/Details.js'
 import AsideInfo from '../AsideInfo/AsideInfo';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   const [isOnView, setIsOnView] = useState(false)
   const [isHighlight, setIsHighlight] = useState(false)
   const [asideInfo, setAsideInfo] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
   //const [departmentEndpoint, setDepartmentEndpoint] = useState('');
   
   useEffect(() => {
@@ -41,17 +43,24 @@ function App() {
                 if(i === objectIDs.length-1) {
                     setArtObjects(objArray)
                     setDisplayedArtObjects(objArray)
+                    setIsLoading(false)
                     console.log(objArray)
                 }
             }
+            setIsLoading(true)
             fetchData();
     }
     }, [objectIDs]);
     
   const handleSubmit = (event, searchQuery) => {
     event.preventDefault();
-    setDisplayedArtObjects([]);
-    setSearchEndpoint(`q=${searchQuery}`);
+    if(!searchQuery){
+      return;
+    } else {
+      setIsLoading(true);
+      setDisplayedArtObjects([]);
+      setSearchEndpoint(`q=${searchQuery}`);
+    }
   }
 
   const handleSort = (event, inputValue) => {
@@ -96,12 +105,21 @@ function App() {
   
   return (
     <main className="main-container">
-      <Nav handleSubmit={handleSubmit} handleChecked={handleChecked}/>
+      <Nav 
+        handleSubmit={handleSubmit} 
+        handleChecked={handleChecked}
+        />
       <Routes>
         {/* <Route path="/" element={<Details />} />  */}
-        <Route path="/" element={
+        <Route path="/" element={ 
+          isLoading ? <LoadingScreen handleSort={handleSort} /> :
           <div className="image-grid-aside-wrapper">
-            <ImageGrid displayedArtObjects={displayedArtObjects} handleSort={handleSort} handleHover={handleHover} clearAsideInfo={clearAsideInfo} />
+            <ImageGrid 
+              displayedArtObjects={displayedArtObjects} 
+              handleSort={handleSort} 
+              handleHover={handleHover} 
+              clearAsideInfo={clearAsideInfo} 
+              />
             <AsideInfo asideInfo={asideInfo} />
           </div>
           } />
