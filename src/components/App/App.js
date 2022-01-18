@@ -30,7 +30,7 @@ function App() {
         console.log(resJson)
         if(resJson.objectIDs === null) {
           setError("No results")
-          setTimeout(() => setIsLoading(false), 3000)
+          setTimeout(() => setIsLoading(false), 2500)
         } else {
           setObjectIDs(resJson.objectIDs.splice(0,20))
         }
@@ -123,21 +123,16 @@ function App() {
         {/* <Route path="/" element={<Details />} />  */}
         <Route path="/" element={ 
           isLoading ? <LoadingScreen handleSort={handleSort} /> :
-          <div className="image-grid-aside-wrapper">
-            { error ? <p>{error}</p> : <ImageGrid 
-              displayedArtObjects={displayedArtObjects} 
-              handleSort={handleSort} 
-              handleHover={handleHover} 
-              clearAsideInfo={clearAsideInfo} 
-              />}
-            {/* <ImageGrid 
-              displayedArtObjects={displayedArtObjects} 
-              handleSort={handleSort} 
-              handleHover={handleHover} 
-              clearAsideInfo={clearAsideInfo} 
-              /> */}
-            <AsideInfo asideInfo={asideInfo} />
-          </div>
+            error ? <p>{error}</p> : 
+              <div className="image-grid-aside-wrapper">
+                <ImageGrid 
+                displayedArtObjects={displayedArtObjects} 
+                handleSort={handleSort} 
+                handleHover={handleHover} 
+                clearAsideInfo={clearAsideInfo} 
+                />
+                <AsideInfo asideInfo={asideInfo} />
+              </div>
           } />
         <Route path="/about" element={<About />} />
         <Route path="/details" element={<Details />}>
