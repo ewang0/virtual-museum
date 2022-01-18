@@ -1,0 +1,48 @@
+.loading {
+    height: 100vh;
+    overflow: hidden;
+    margin-right: 200px;
+}
+
+.skeleton {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: lightgray;
+    background: 
+    linear-gradient(0.25turn, transparent, #fff, transparent),
+    linear-gradient(#eee, #eee),
+    linear-gradient(#eee, #eee);  
+    background-repeat: no-repeat;
+    background-position: -400px 0, 0 0, 0px 190px, 50px 195px; 
+    animation: loading 1s infinite;
+}
+
+.two {
+    height: 500px;
+}
+
+.three {
+    height: 200px;
+    width: 500px;
+}
+
+.four {
+    height: 350px;
+}
+
+.five {
+    height: 700px;
+}
+
+.skeleton-divs {
+    max-width: 1000px;
+    column-count: 2;
+    margin-top: 5px;
+}
+
+@keyframes loading {  
+    to {
+        background-position: 500px 0, 0 0, 0 190px, 50px 195px;
+    }
+  }
