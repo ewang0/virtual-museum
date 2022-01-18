@@ -6,6 +6,7 @@ import About from '../About/About.js'
 import Details from '../Details/Details.js'
 import AsideInfo from '../AsideInfo/AsideInfo';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import ErrorState from '../ErrorState/ErrorState';
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   const [isHighlight, setIsHighlight] = useState(false)
   const [asideInfo, setAsideInfo] = useState({})
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState('')
   //const [departmentEndpoint, setDepartmentEndpoint] = useState('');
   
   useEffect(() => {
@@ -24,32 +26,40 @@ function App() {
         const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
         //console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
         const resJson = await res.json()
-        .catch(error => console.log(error));
-        setObjectIDs(resJson.objectIDs.splice(0,20))
+        .catch(error => setError(error));
+        console.log(resJson)
+        if(resJson.objectIDs === null) {
+          setError("No results")
+          setTimeout(() => setIsLoading(false), 3000)
+        } else {
+          setObjectIDs(resJson.objectIDs.splice(0,20))
+        }
+
         //console.log(resJson.objectIDs) 
     }
     fetchData();
     }, [searchEndpoint]);
 
   useEffect(() => {
-    let objArray = [];
-    for(let i=0; i<objectIDs.length; i++) {
-        const fetchData = async() => {
-                const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectIDs[i]}`)
-                const resJson = await res.json()
-                .catch(error => console.log(error));
-                objArray.push(resJson)
-                
-                if(i === objectIDs.length-1) {
-                    setArtObjects(objArray)
-                    setDisplayedArtObjects(objArray)
-                    setIsLoading(false)
-                    console.log(objArray)
-                }
-            }
-            setIsLoading(true)
-            fetchData();
-    }
+      let objArray = [];
+      for(let i=0; i<objectIDs.length; i++) {
+          const fetchData = async() => {
+                  const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectIDs[i]}`)
+                  const resJson = await res.json()
+                  .catch(error => setError(error));
+                  objArray.push(resJson)
+                  
+                  if(i === objectIDs.length-1) {
+                      setArtObjects(objArray)
+                      setDisplayedArtObjects(objArray)
+                      setIsLoading(false)
+                      console.log(objArray)
+                  }
+              }
+              setIsLoading(true)
+              fetchData();
+      }
+
     }, [objectIDs]);
     
   const handleSubmit = (event, searchQuery) => {
@@ -114,12 +124,18 @@ function App() {
         <Route path="/" element={ 
           isLoading ? <LoadingScreen handleSort={handleSort} /> :
           <div className="image-grid-aside-wrapper">
-            <ImageGrid 
+            { error ? <p>{error}</p> : <ImageGrid 
               displayedArtObjects={displayedArtObjects} 
               handleSort={handleSort} 
               handleHover={handleHover} 
               clearAsideInfo={clearAsideInfo} 
-              />
+              />}
+            {/* <ImageGrid 
+              displayedArtObjects={displayedArtObjects} 
+              handleSort={handleSort} 
+              handleHover={handleHover} 
+              clearAsideInfo={clearAsideInfo} 
+              /> */}
             <AsideInfo asideInfo={asideInfo} />
           </div>
           } />
