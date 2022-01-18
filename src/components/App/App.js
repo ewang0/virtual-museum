@@ -139,6 +139,7 @@ function App() {
         <Route path="/details" element={<Details />}>
           <Route path="/details/:objectID" element={<Details />}/>
         </Route>
+        <Route path="*" element={<ErrorState is404={true} />} />
       </Routes>
     </main>
   );
