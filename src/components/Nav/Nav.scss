@@ -1,26 +1,26 @@
 nav {
     max-width: 350px;
-    //border: 2px solid blue;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
+
 .nav-content {
     margin: 20px 40px 20px 40px;
     max-width: 270px;
+
     p {
         max-width: 90% ;
         font-size: 16px;
     }
 }
-.logo-nav-container{
-    // margin-bottom: 40px;
-    
+.logo-nav-container{  
     .logo {
         font-family: 'Anton', sans-serif;
         font-size: 60px;
         margin: 0px;
     }
+
     .nav-links {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -28,9 +28,14 @@ nav {
         border-bottom: 1px solid lightgray;
         display: flex;
         justify-content: space-between;
+
         a {
             text-decoration: none;
             color: black;
+
+            &:hover {
+                color: #E00028;
+            }
         }
     }
 }
@@ -38,18 +43,20 @@ nav {
 .search-filter-container {
     display: flex;
     margin-top: -5px;
+
     label {
         margin-left: 5px;
+
         span {
             margin-right: -5px;
         }       
     }
 }
 
-//search styles
 .search-bar {
     margin-top: 40px;
     margin-bottom: 10px;
+    
     a {
         text-decoration: none;
         color: rgb(87, 87, 87);

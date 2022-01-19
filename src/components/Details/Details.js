@@ -13,15 +13,15 @@ const Details = () => {
     useEffect(() => {
         const fetchData = async() => {
             const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`)
-            //console.log('details fetch:', `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`)
             const resJson = await res.json()
-            .catch(error => console.log(error));
+                .catch(error => console.log(error));
             setArtObject(resJson)
-            console.log(resJson)
+
             const allObjectImages = [resJson.primaryImage];
             resJson.additionalImages.forEach((additionalImage) => {
                 allObjectImages.push(additionalImage)
             })
+            
             setAllImages(allObjectImages);
         }
         fetchData();

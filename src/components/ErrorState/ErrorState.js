@@ -14,7 +14,6 @@ const ErrorState = ({ type, is404 }) => {
     )
 }
 
-
 export default ErrorState;
 
 ErrorState.propTypes = {

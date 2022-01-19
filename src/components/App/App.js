@@ -7,36 +7,33 @@ import Details from '../Details/Details.js'
 import AsideInfo from '../AsideInfo/AsideInfo';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import ErrorState from '../ErrorState/ErrorState';
+import randomSearches from '../../randomSearches.js'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
   const [objectIDs, setObjectIDs] = useState([]);
   const [artObjects, setArtObjects] = useState([]);
   const [displayedArtObjects, setDisplayedArtObjects] = useState([]);
-  const [searchEndpoint, setSearchEndpoint] = useState('q=sunflower');
+  const [searchEndpoint, setSearchEndpoint] = useState(`isHighlight=true&q=${randomSearches[Math.floor(Math.random()*randomSearches.length)]}`);
   const [isOnView, setIsOnView] = useState(false)
   const [isHighlight, setIsHighlight] = useState(false)
   const [asideInfo, setAsideInfo] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
-  //const [departmentEndpoint, setDepartmentEndpoint] = useState('');
-  
+
   useEffect(() => {
     const fetchData = async() => {
         const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
-        //console.log(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
         const resJson = await res.json()
-        .catch(error => setError(error));
-        console.log(resJson)
+          .catch(error => setError(error));
+
         if(resJson.objectIDs === null) {
           setError("No results")
           setTimeout(() => setIsLoading(false), 2500)
         } else {
           setError('')
-          setObjectIDs(resJson.objectIDs.splice(0,20))
+          setObjectIDs(resJson.objectIDs.splice(0, 40))
         }
-
-        //console.log(resJson.objectIDs) 
     }
     fetchData();
     }, [searchEndpoint]);
@@ -54,7 +51,6 @@ function App() {
                       setArtObjects(objArray)
                       setDisplayedArtObjects(objArray)
                       setIsLoading(false)
-                      console.log(objArray)
                   }
               }
               setIsLoading(true)
@@ -79,11 +75,9 @@ function App() {
     if(!inputValue) {
       setDisplayedArtObjects(artObjects);
     } else {
-      //console.log('inputvalue', inputValue.label)
       const filteredObjects = artObjects.filter((artObject) => {
         return artObject.department === inputValue.label;
       })
-      //console.log('filtered objs', filteredObjects)
       setDisplayedArtObjects(filteredObjects);
     }
   }
@@ -107,7 +101,6 @@ function App() {
       return objectKey===object.objectID.toString()
     });
     setAsideInfo({title: hoveredObject.title, artist: hoveredObject.artistDisplayName, date: hoveredObject.objectDate});
-    console.log(asideInfo)
   }
 
   const clearAsideInfo = () => {
@@ -121,18 +114,17 @@ function App() {
         handleChecked={handleChecked}
         />
       <Routes>
-        {/* <Route path="/" element={<Details />} />  */}
         <Route path="/" element={ 
           isLoading ? <LoadingScreen handleSort={handleSort} /> :
             error ? <ErrorState /> : 
               <div className="image-grid-aside-wrapper">
                 <ImageGrid 
-                displayedArtObjects={displayedArtObjects} 
-                handleSort={handleSort} 
-                handleHover={handleHover} 
-                clearAsideInfo={clearAsideInfo} 
-                searchEndpoint={searchEndpoint}
-                />
+                  displayedArtObjects={displayedArtObjects} 
+                  handleSort={handleSort} 
+                  handleHover={handleHover} 
+                  clearAsideInfo={clearAsideInfo} 
+                  searchEndpoint={searchEndpoint}
+                  />
                 <AsideInfo asideInfo={asideInfo} />
               </div>
           } />

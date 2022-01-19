@@ -1,5 +1,3 @@
-import { shouldForwardProp } from "@mui/styled-engine"
-
 describe('Home', () => {
     beforeEach(() => {
         cy.intercept('GET', `https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=sunflower`, {
@@ -63,6 +61,14 @@ describe('Home', () => {
 
     it('Should display an option to sort by department', () => {
         cy.get('.autocomplete').should('be.visible')
+    })
+
+    it('Should have an About page', () => {
+        cy.get('nav').find('a').contains('About').click()
+        cy.get('.about-section-content').should('be.visible')
+        cy.get('.about-section-content').find('img').should('be.visible')
+        cy.get('.about-section-content').find('h2').should('be.visible')
+        cy.get('.about-section-content').find('p').should('be.visible')
     })
 
     it('Should display a 404 page when a bad URL is visited', () => {

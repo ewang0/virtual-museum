@@ -10,7 +10,7 @@ const ImageGridHeader = ({ handleSort, searchEndpoint }) => {
 
     return(
         <div className="image-grid-header-container">
-            {searchEndpoint ? <p>Showing results for <b>"{searchEndpoint.slice(2)}"</b></p> : <p>Loading results...</p>}
+            {searchEndpoint ? <p>Showing results for <b>"{searchEndpoint.includes("Highlight") ? searchEndpoint.slice(19) : searchEndpoint.slice(2)}"</b></p> : <p>Loading results...</p>}
             
             <div className="image-grid-header-sort">
                 <form className="department-sort-container">
@@ -21,14 +21,9 @@ const ImageGridHeader = ({ handleSort, searchEndpoint }) => {
                             className="autocomplete"
                             options={departments}
                             id="departmentsAutocomplete"
-                            //disableCloseOnSelect
-                            
                             sx={{ width: 200 }}
                             onChange={(event, newValue) => {
-                                //console.log('before', departmentValue)
                                 setDepartmentValue(newValue)
-                                console.log(newValue)
-                                //console.log('after', departmentValue)
                                 handleSort(event, newValue)
                             }}
                             renderInput={(params) => (
@@ -45,5 +40,6 @@ const ImageGridHeader = ({ handleSort, searchEndpoint }) => {
 export default ImageGridHeader;
 
 ImageGridHeader.propTypes = {
-    handleSort: PropTypes.func
+    handleSort: PropTypes.func,
+    searchEndpoint: PropTypes.string
 }
