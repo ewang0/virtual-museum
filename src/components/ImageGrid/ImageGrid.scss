@@ -26,3 +26,30 @@ img {
     max-width: 1000px;
     column-count: 2;
 }
+
+@media screen and (max-width: 1075px) {
+    .images {
+        column-count: 1;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .image-grid-section-container {
+        margin-right: 35px;
+    }
+}
+
+@media screen and (max-width: 685px) {
+    .image-grid-section-container {
+        margin-left: 40px;
+        margin-right: 40px;
+        overflow: visible;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .image-grid-section-container {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}

@@ -63,3 +63,14 @@ nav {
         padding: 3px;
     }
 }
+
+@media screen and (max-width: 375px) {
+    .nav-content {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    nav {
+        align-items: flex-start;
+    }
+}

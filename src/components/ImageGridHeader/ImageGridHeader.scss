@@ -6,6 +6,7 @@
     margin-top: 20px;
     margin-bottom: 5px;
 }
+
 .image-grid-header-sort {
     form {
         margin-left: 20px;
@@ -25,5 +26,17 @@ label {
     display: flex;
     form {
         display: flex;
+    }
+}
+
+@media screen and (max-width: 1033px) {
+    .image-grid-header-sort {
+        label {
+            display: block;
+        }
+    }
+    .autocomplete {
+        margin-left: 0px;
+        margin-top: 5px;
     }
 }

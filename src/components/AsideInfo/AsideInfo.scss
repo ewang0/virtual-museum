@@ -18,3 +18,9 @@
         margin: 0px;
     }
 }
+
+@media screen and (max-width: 880px) {
+    .aside-container {
+        display: none;
+    }
+}

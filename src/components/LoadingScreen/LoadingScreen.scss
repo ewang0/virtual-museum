@@ -38,11 +38,37 @@
 .skeleton-divs {
     max-width: 1000px;
     column-count: 2;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 @keyframes loading {  
     to {
         background-position: 500px 0, 0 0, 0 190px, 50px 195px;
     }
-  }
+}
+
+@media screen and (max-width: 1075px) {
+    .skeleton-divs {
+        column-count: 1;
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .loading {
+        margin-right: 35px;
+    }
+}
+
+@media screen and (max-width: 685px) {
+    .loading {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .loading {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
