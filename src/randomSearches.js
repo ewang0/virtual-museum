@@ -19,7 +19,6 @@ const randomSearches = [
     "Islamic Art",
     "Furniture",
     "Bread",
-    "Egon Schiele",
     "Degas",
     "Seurat",
     "Leonardo Da Vinci",
