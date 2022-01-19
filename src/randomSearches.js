@@ -1,7 +1,6 @@
 const randomSearches = [
     "Rodin",
     "Van Gogh",
-    "Monet",
     "Cezanne",
     "Egyptian Art",
     "Sculpture",

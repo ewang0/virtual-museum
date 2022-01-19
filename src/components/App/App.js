@@ -14,7 +14,7 @@ function App() {
   const [objectIDs, setObjectIDs] = useState([]);
   const [artObjects, setArtObjects] = useState([]);
   const [displayedArtObjects, setDisplayedArtObjects] = useState([]);
-  const [searchEndpoint, setSearchEndpoint] = useState(`q=${randomSearches[Math.floor(Math.random()*randomSearches.length)]}`);
+  const [searchEndpoint, setSearchEndpoint] = useState(`isHighlight=true&q=${randomSearches[Math.floor(Math.random()*randomSearches.length)]}`);
   const [isOnView, setIsOnView] = useState(false)
   const [isHighlight, setIsHighlight] = useState(false)
   const [asideInfo, setAsideInfo] = useState({})
@@ -34,7 +34,7 @@ function App() {
           setTimeout(() => setIsLoading(false), 2500)
         } else {
           setError('')
-          setObjectIDs(resJson.objectIDs.splice(0, 40))
+          setObjectIDs(resJson.objectIDs.splice(0, 50))
         }
 
         //console.log(resJson.objectIDs) 
