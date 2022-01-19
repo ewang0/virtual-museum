@@ -104,5 +104,5 @@ export default Nav;
 
 Nav.propTypes = {
     handleSubmit: PropTypes.func,
-    handleSubmit: PropTypes.func
+    handleChecked: PropTypes.func
 }
