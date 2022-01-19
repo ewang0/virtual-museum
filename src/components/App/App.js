@@ -7,20 +7,21 @@ import Details from '../Details/Details.js'
 import AsideInfo from '../AsideInfo/AsideInfo';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import ErrorState from '../ErrorState/ErrorState';
+import randomSearches from '../../randomSearches.js'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
   const [objectIDs, setObjectIDs] = useState([]);
   const [artObjects, setArtObjects] = useState([]);
   const [displayedArtObjects, setDisplayedArtObjects] = useState([]);
-  const [searchEndpoint, setSearchEndpoint] = useState('q=sunflower');
+  const [searchEndpoint, setSearchEndpoint] = useState(`q=${randomSearches[Math.floor(Math.random()*randomSearches.length)]}`);
   const [isOnView, setIsOnView] = useState(false)
   const [isHighlight, setIsHighlight] = useState(false)
   const [asideInfo, setAsideInfo] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   //const [departmentEndpoint, setDepartmentEndpoint] = useState('');
-  
+
   useEffect(() => {
     const fetchData = async() => {
         const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true${isHighlight ? '&isHighlight=true' : ''}${isOnView ? '&isOnView=true' : ''}&${searchEndpoint}`)
@@ -33,7 +34,7 @@ function App() {
           setTimeout(() => setIsLoading(false), 2500)
         } else {
           setError('')
-          setObjectIDs(resJson.objectIDs.splice(0,20))
+          setObjectIDs(resJson.objectIDs.splice(0, 40))
         }
 
         //console.log(resJson.objectIDs) 
