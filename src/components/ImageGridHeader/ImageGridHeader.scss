@@ -40,3 +40,26 @@ label {
         margin-top: 5px;
     }
 }
+
+@media screen and (max-width: 815px) {
+    .image-grid-header-sort {
+        label {
+            display: flex;
+        }
+    }
+    .autocomplete {
+        margin-left: 15px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .image-grid-header-sort {
+        label {
+            display: block;
+        }
+    }
+    .autocomplete {
+        margin-left: 0px;
+        margin-top: 5px;
+    }
+}
