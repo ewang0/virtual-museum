@@ -47,5 +47,8 @@
   "devDependencies": {
     "cypress": "^9.2.1",
     "sass": "^1.48.0"
+  },
+  "resolutions": {
+    "mini-css-extract-plugin": "2.4.5"
   }
 }
