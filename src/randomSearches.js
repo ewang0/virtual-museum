@@ -6,7 +6,6 @@ const randomSearches = [
     "Sculpture",
     "American Art",
     "Asian Art",
-    "Sunflower",
     "Modern Art",
     "Fashion",
     "Lautrec",
