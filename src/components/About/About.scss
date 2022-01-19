@@ -2,6 +2,9 @@
     max-width: 1000px;
     margin-right: 200px;
     margin-bottom: 40px;
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    transition: margin 0.5s;
 }
 
 .about-section-content {
@@ -15,6 +18,9 @@
     a {
         color: black;
     }
+    -webkit-transition: margin 0.5s;
+    -moz-transition: margin 0.5s;
+    transition: margin 0.5s;
 }
 
 @media screen and (max-width: 1200px) {
