@@ -50,6 +50,12 @@ nav {
 .search-bar {
     margin-top: 40px;
     margin-bottom: 10px;
+    a {
+        text-decoration: none;
+        color: rgb(87, 87, 87);
+        margin-top: 6px;
+        margin-left: -6px;
+    }
 }
 
 .submit-search-button {
@@ -57,10 +63,10 @@ nav {
         opacity: 80%;
         cursor: pointer;
         color: white;
-        background-color: rgb(141, 141, 141);
+        background-color: rgb(129, 129, 129);
         border-radius: 40px;
-        margin-right: -3px;
-        padding: 3px;
+        margin-right: -4px;
+        padding: 4px;
     }
 }
 

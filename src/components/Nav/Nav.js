@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Nav.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -61,7 +61,7 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                                         setCheckedState({isOnView: false, isHighlight: false});
                                     }}
                                     >
-                                        <SearchIcon className="submit-search-button" />
+                                        <Link to="/"><SearchIcon className="submit-search-button" /></Link>
                                 </InputAdornment>,
                         }}
                     />
