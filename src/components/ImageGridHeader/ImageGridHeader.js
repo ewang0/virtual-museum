@@ -10,7 +10,7 @@ const ImageGridHeader = ({ handleSort, searchEndpoint }) => {
 
     return(
         <div className="image-grid-header-container">
-            {searchEndpoint ? <p>Showing results for <b>"{searchEndpoint.slice(19)}"</b></p> : <p>Loading results...</p>}
+            {searchEndpoint ? <p>Showing results for <b>"{searchEndpoint.includes("Highlight") ? searchEndpoint.slice(19) : searchEndpoint.slice(2)}"</b></p> : <p>Loading results...</p>}
             
             <div className="image-grid-header-sort">
                 <form className="department-sort-container">
