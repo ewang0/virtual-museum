@@ -18,7 +18,12 @@ const randomSearches = [
     "Roman Art",
     "Islamic Art",
     "Furniture",
-    "Bread"
+    "Bread",
+    "Egon Schiele",
+    "Degas",
+    "Seurat",
+    "Leonardo Da Vinci",
+    "Donatello"
 ]
 
 export default randomSearches
