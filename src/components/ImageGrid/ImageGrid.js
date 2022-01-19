@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './ImageGrid.scss';
 import ImageGridHeader from '../ImageGridHeader/ImageGridHeader';
-import AsideInfo from '../AsideInfo/AsideInfo';
 import ErrorState from '../ErrorState/ErrorState';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -18,15 +17,9 @@ const ImageGrid = ({ displayedArtObjects, handleSort, handleHover, clearAsideInf
                     key={artObject.objectID} 
                     src={artObject.primaryImageSmall} 
                     alt={artObject.title} 
-                    //title={artObject.title}
                     id={artObject.objectID}
-                    //date={artObject.objectDate}
-                    onMouseEnter={(event) => {
-                        handleHover(event, event.target.id)
-                    }}
-                    onMouseLeave={() => {
-                        clearAsideInfo()
-                    }}
+                    onMouseEnter={(event) => { handleHover(event, event.target.id) }}
+                    onMouseLeave={() => { clearAsideInfo() }}
                     />
             </Link>
         )

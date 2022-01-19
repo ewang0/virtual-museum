@@ -4,14 +4,13 @@
     -webkit-transition: margin 0.5s;
     -moz-transition: margin 0.5s;
     transition: margin 0.5s;
-    //margin-right: 200px;
-    //border: 2px solid orange;
 }
 
 img {
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+    
     &:hover {
         opacity: 80%;
     }

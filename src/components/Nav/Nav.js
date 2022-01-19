@@ -33,7 +33,6 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                     </div>
                 </div>
                 <p>Search over 470,000 objects in The Metropolitan Museum of Art and get inspired without leaving home.</p>
-                {/* <Search handleSubmit={handleSubmit} /> */}
                 <form className="search-bar">
                     <TextField 
                         className="search"
@@ -73,7 +72,6 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                             }}
                             checked={checkedState.isOnView}
                             onChange={(event) => {
-                                console.log(event.target.id)
                                 handleChecked(event.target.checked, event.target.id)
                                 setCheckedState({isOnView: event.target.checked, isHighlight: checkedState.isHighlight})
                             }}
@@ -90,7 +88,6 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                             }}
                             checked={checkedState.isHighlight}
                             onChange={(event) => {
-                                console.log(event.target.id)
                                 handleChecked(event.target.checked, event.target.id)
                                 setCheckedState({isOnView: checkedState.isOnView, isHighlight: event.target.checked})
                             }}

@@ -1,25 +1,20 @@
 
 .details-section-container {
-    //border: 2px solid red;
-    //height: 100vh;
-    //flex: 1;
     max-width: 1200px;
     display: flex;
 }
+
 .carousel-container {
     height: calc(100vh - 35px);
     overflow: scroll;
     width: 70%;
-    //height: 100%;
     margin-top: 35px;
+    
     ul {
         padding: 0px;
         margin: 0px;
     }
-    .slide {
-        //height: calc(100vh - 300px);
-        //min-width: auto;
-    }
+
     .thumbs-wrapper {
         margin-left: 0px;
     }
@@ -28,8 +23,6 @@
 .object-details-container {
     height: 100%;
     display: flex;
-    //position: fixed;
-    //right: 0;
     flex-direction: column;
     justify-content: flex-end;
 
@@ -38,11 +31,12 @@
         margin-left: 35px;
         margin-right: 35px;
     }
+
     p {
         margin:0px;
     }
+
     a {
-        // color: #E00028;
         color: black;
     }
 }
