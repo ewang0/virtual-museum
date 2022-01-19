@@ -37,7 +37,7 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                             >Saved</NavLink>
                     </div>
                 </div>
-                <p>Search the collection of the Metropolitan Museum of Art and get inspired without leaving home.</p>
+                <p>Search over 470,000 objects in The Metropolitan Museum of Art and get inspired without leaving home.</p>
                 {/* <Search handleSubmit={handleSubmit} /> */}
                 <form className="search-bar">
                     <TextField 
