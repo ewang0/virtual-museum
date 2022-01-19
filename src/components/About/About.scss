@@ -5,6 +5,9 @@
     -webkit-transition: margin 0.5s;
     -moz-transition: margin 0.5s;
     transition: margin 0.5s;
+    img:hover {
+        opacity: 1;
+    }
 }
 
 .about-section-content {
