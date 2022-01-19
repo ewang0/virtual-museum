@@ -6,7 +6,7 @@ import ErrorState from '../ErrorState/ErrorState';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const ImageGrid = ({ displayedArtObjects, handleSort, handleHover, clearAsideInfo }) => {
+const ImageGrid = ({ displayedArtObjects, handleSort, handleHover, clearAsideInfo, searchEndpoint }) => {
     const images = displayedArtObjects.map((artObject) => {
         return(
             <Link 
@@ -34,7 +34,7 @@ const ImageGrid = ({ displayedArtObjects, handleSort, handleHover, clearAsideInf
 
     return(
         <section className="image-grid-section-container">
-            <ImageGridHeader handleSort={handleSort} />
+            <ImageGridHeader handleSort={handleSort} searchEndpoint={searchEndpoint} />
             { displayedArtObjects.length===0 ? <ErrorState type={"sort" }/> : <div className="images">{images}</div>}
         </section>
     )
@@ -45,5 +45,6 @@ export default ImageGrid;
 ImageGrid.propTypes = {
     displayedArtObjects: PropTypes.array,
     handleSort: PropTypes.func,
-    handleHover: PropTypes.func
+    handleHover: PropTypes.func,
+    searchEndpoint: PropTypes.string
 };

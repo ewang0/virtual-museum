@@ -131,6 +131,7 @@ function App() {
                 handleSort={handleSort} 
                 handleHover={handleHover} 
                 clearAsideInfo={clearAsideInfo} 
+                searchEndpoint={searchEndpoint}
                 />
                 <AsideInfo asideInfo={asideInfo} />
               </div>
