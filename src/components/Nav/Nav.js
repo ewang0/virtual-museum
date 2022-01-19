@@ -29,6 +29,7 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                                 color: isActive ? '#E00028' : '',
                             })}
                             >About</NavLink>
+                        <a href="https://github.com/ewang0/virtual-museum" target="_blank" rel="noreferrer">Repo</a>
                         <a href="https://metmuseum.github.io/" target="_blank" rel="noreferrer">API</a>
                     </div>
                 </div>
