@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Nav.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -17,12 +17,27 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                 <div className="logo-nav-container">
                     <h1 className="logo">METVIRTUAL</h1>
                     <div className="nav-links">
-                        <NavLink to="/">Home</NavLink>
-                        <NavLink to="/about">About</NavLink>
-                        <NavLink to="/saved">Saved</NavLink>
+                        <NavLink 
+                            to="/"
+                            style={({ isActive }) => ({                           
+                                color: isActive ? '#E00028' : '',
+                            })}
+                            >Home</NavLink>
+                        <NavLink 
+                            to="/about"
+                            style={({ isActive }) => ({                           
+                                color: isActive ? '#E00028' : '',
+                            })}
+                            >About</NavLink>
+                        <NavLink 
+                            to="/saved"
+                            style={({ isActive }) => ({                           
+                                color: isActive ? '#E00028' : '',
+                            })}
+                            >Saved</NavLink>
                     </div>
                 </div>
-                <p>Search the collection of the Metropolitan Museum of Art and get inspired without leaving home.</p>
+                <p>Search over 470,000 objects in The Metropolitan Museum of Art and get inspired without leaving home.</p>
                 {/* <Search handleSubmit={handleSubmit} /> */}
                 <form className="search-bar">
                     <TextField 
@@ -33,6 +48,7 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                         placeholder="Search"
                         size="small"
                         variant="filled"
+                        color="error"
                         onChange={(event) => setSearchState(event.target.value)}
                         value={searchState}
                         InputProps={{
@@ -45,7 +61,7 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                                         setCheckedState({isOnView: false, isHighlight: false});
                                     }}
                                     >
-                                        <SearchIcon className="submit-search-button" />
+                                        <Link to="/"><SearchIcon className="submit-search-button" /></Link>
                                 </InputAdornment>,
                         }}
                     />
@@ -55,6 +71,11 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                     <label>
                         <Checkbox 
                             id="onView"
+                            sx={{
+                                '&.Mui-checked': {
+                                    color: '#E00028',
+                                }
+                            }}
                             checked={checkedState.isOnView}
                             onChange={(event) => {
                                 console.log(event.target.id)
@@ -67,6 +88,11 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                     <label>
                         <Checkbox 
                             id="isHighlight"
+                            sx={{
+                                '&.Mui-checked': {
+                                    color: '#E00028',
+                                }
+                            }}
                             checked={checkedState.isHighlight}
                             onChange={(event) => {
                                 console.log(event.target.id)

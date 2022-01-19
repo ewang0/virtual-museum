@@ -5,12 +5,13 @@ import TextField from '@mui/material/TextField';
 import { departments } from '../../content.js';
 import PropTypes from 'prop-types';
 
-const ImageGridHeader = ({ handleSort }) => {
+const ImageGridHeader = ({ handleSort, searchEndpoint }) => {
     const [departmentValue, setDepartmentValue] = useState(null);
 
     return(
         <div className="image-grid-header-container">
-            <p>Showing results for "sunflower"</p>
+            {searchEndpoint ? <p>Showing results for <b>"{searchEndpoint.slice(2)}"</b></p> : <p>Loading results...</p>}
+            
             <div className="image-grid-header-sort">
                 <form className="department-sort-container">
                     <label>
@@ -21,6 +22,7 @@ const ImageGridHeader = ({ handleSort }) => {
                             options={departments}
                             id="departmentsAutocomplete"
                             //disableCloseOnSelect
+                            
                             sx={{ width: 200 }}
                             onChange={(event, newValue) => {
                                 //console.log('before', departmentValue)
@@ -30,7 +32,7 @@ const ImageGridHeader = ({ handleSort }) => {
                                 handleSort(event, newValue)
                             }}
                             renderInput={(params) => (
-                                <TextField {...params} label="Department" size="small" />
+                                <TextField {...params} color="error" label="Department" size="small" />
                             )}
                         />
                     </label>
