@@ -33,3 +33,22 @@
     margin-right: 0px;
     max-width: 1000px;
 }
+
+@media screen and (max-width: 1200px) {
+    .error-state-container {
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width: 815px) {
+    .error-state-container {
+        margin-left: 40px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .error-state-container {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
