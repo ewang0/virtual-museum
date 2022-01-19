@@ -21,6 +21,7 @@ const ImageGridHeader = ({ handleSort }) => {
                             options={departments}
                             id="departmentsAutocomplete"
                             //disableCloseOnSelect
+                            
                             sx={{ width: 200 }}
                             onChange={(event, newValue) => {
                                 //console.log('before', departmentValue)
@@ -30,7 +31,7 @@ const ImageGridHeader = ({ handleSort }) => {
                                 handleSort(event, newValue)
                             }}
                             renderInput={(params) => (
-                                <TextField {...params} label="Department" size="small" />
+                                <TextField {...params} color="error" label="Department" size="small" />
                             )}
                         />
                     </label>
