@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import PropTypes from 'prop-types';
+import { WcTwoTone } from '@mui/icons-material';
 
 const Nav = ({ handleSubmit, handleChecked }) => {
     const [searchState, setSearchState] = useState('');
@@ -45,10 +46,17 @@ const Nav = ({ handleSubmit, handleChecked }) => {
                         variant="filled"
                         color="error"
                         onChange={(event) => setSearchState(event.target.value)}
+                        onKeyPress={(event) => {
+                            if(event.key === 'Enter') {
+                                event.preventDefault()
+                                const el = document.getElementById('inputAdornment').click();
+                            }
+                        }}
                         value={searchState}
                         InputProps={{
                             endAdornment: 
                                 <InputAdornment 
+                                    id="inputAdornment"
                                     position="end"
                                     onClick={(event) => {
                                         handleSubmit(event, searchState)
