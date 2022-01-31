@@ -1,6 +1,6 @@
 # METVIRTUAL
 
-> A 6-day solo project by Eric Wang
+> A 5-day solo project by Eric Wang
 
 See the deployed application at https://metvirtual.netlify.app/
 
