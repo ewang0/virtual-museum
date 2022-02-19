@@ -22,13 +22,13 @@ METVIRTUAL is a 6-day solo project by Eric Wang, built with JavaScript and React
 
 ## Goals
 
-The project's goals, listed below in an abbreviated form, are taken directly from the Turing project write-up:
+The project's goals, listed below in an abbreviated form:
 
 ``` Markdown
  1. Demonstrate mastery of React, Router and asynchronous JavaScript
  2. Complete end-to-end testing with Cypress
- 3. Work within constraints to deliver a product for your niche audience, which helps solve a problem unique to them.
- 4. Display API data in a way that applies directly to you audience
+ 3. Work within constraints to deliver a product for a niche audience, which helps solve a problem unique to them.
+ 4. Display API data
  5. Store and/or manipulate the data displayed in the application, such as favoriting or adding to a list, searching, commenting, etc.
  6. Deploy the application with either Heroku, Surge, or Netlify
 ```
