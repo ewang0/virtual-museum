@@ -7,7 +7,7 @@
 .carousel-container {
     height: calc(100vh - 35px);
     overflow: scroll;
-    width: 70%;
+    width: 60%;
     margin-top: 35px;
     
     ul {
@@ -22,9 +22,12 @@
 
 .object-details-container {
     height: 100%;
+    max-width: 400px;
     display: flex;
+    //flex: 1;
     flex-direction: column;
     justify-content: flex-end;
+    word-wrap: break-word;
 
     .object-details-content {
         margin-bottom: 150px;
@@ -38,6 +41,7 @@
 
     a {
         color: black;
+        
     }
 }
 

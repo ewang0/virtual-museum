@@ -45,8 +45,9 @@ function App() {
                   const res = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectIDs[i]}`)
                   const resJson = await res.json()
                   .catch(error => setError(error));
-                  objArray.push(resJson)
                   
+                  resJson.primaryImage && objArray.push(resJson) // filter out responses without images
+
                   if(i === objectIDs.length-1) {
                       setArtObjects(objArray)
                       setDisplayedArtObjects(objArray)
